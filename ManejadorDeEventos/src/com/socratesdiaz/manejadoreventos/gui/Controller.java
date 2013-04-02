@@ -11,16 +11,19 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class Controller implements ActionListener, ChangeListener, KeyListener, WindowListener {
 
 	AddDialog addDialog;
+	ItemsToReportGui itemsToReport;
+	Login loginWindow;
 	MainWindow mainWindow;
 	ReportMakerGui reportMaker;
 	SearchDialog searchDialog;
-	ItemsToReportGui itemsToReport;
+	
 	
 	public Controller() {
 		mainWindow = new MainWindow(this);
@@ -28,6 +31,8 @@ public class Controller implements ActionListener, ChangeListener, KeyListener, 
 		searchDialog = new SearchDialog(mainWindow, this);
 		reportMaker = new ReportMakerGui(mainWindow, this);
 		itemsToReport = new ItemsToReportGui(reportMaker, this);
+		loginWindow = new Login(mainWindow, this);
+		loginWindow.setVisible(true);
 	}
 
 	@Override
@@ -50,11 +55,20 @@ public class Controller implements ActionListener, ChangeListener, KeyListener, 
 
 	@Override
 	public void stateChanged(ChangeEvent arg0) {
-		Component item_changed = (Component) arg0.getSource();
+		JRadioButton item_changed = (JRadioButton) arg0.getSource();
 		
 		{ // Controles del diálogo de búsqueda
 			if(item_changed.getName().equals("searchDialogViewNamePanel")) {
-				
+				if(item_changed.isSelected()) searchDialog.setPanel("SearchNamePanel");
+			}
+			if(item_changed.getName().equals("searchDialogViewEventPanel")) {
+				if(item_changed.isSelected()) searchDialog.setPanel("SearchEventPanel");
+			}
+			if(item_changed.getName().equals("searchDialogViewTicketPanel")) {
+				if(item_changed.isSelected()) searchDialog.setPanel("SearchTicketsPanel");
+			}
+			if(item_changed.getName().equals("searchDialogViewDatePanel")) {
+				if(item_changed.isSelected()) searchDialog.setPanel("SearchDatePanel");
 			}
 			
 		}
@@ -63,6 +77,18 @@ public class Controller implements ActionListener, ChangeListener, KeyListener, 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
 		Component comp = (Component) ev.getSource();
+		
+		{// Controles de la ventana de logueo
+			if(comp.getName().equals("Login_OK")) {
+				System.out.println("Logueando usuario");
+				loginWindow.setVisible(false);
+			}
+			if(comp.getName().equals("Login_Cancel")) {
+				System.out.println("Saliendo");
+				loginWindow.setVisible(false);
+				System.exit(0);
+			}
+		}
 		
 		{// Controles de la ventana principal
 			

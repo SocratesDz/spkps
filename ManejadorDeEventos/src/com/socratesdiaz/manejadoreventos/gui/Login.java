@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
@@ -16,38 +17,25 @@ import javax.swing.border.TitledBorder;
 
 public class Login extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private final JPanel contentPanel;
+	private JTextField usernameField;
 	private JPasswordField passwordField;
-	private JTextField textField_1;
-	private JPasswordField textField_2;
-	private JTextField textField_3;
+	private JTextField dbusernameField;
+	private JPasswordField dbpasswordField;
+	private JTextField dbhostField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Login dialog = new Login();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
-	public Login() {
+	public Login(JFrame parent, Controller control) {
+		super(parent);
+		setTitle("Login");
 		setBounds(100, 100, 450, 427);
-		getContentPane().setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
+		contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new GridLayout(2, 0, 0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Indentif\u00EDquese", TitledBorder.LEADING, TitledBorder.TOP, null, Color.blue));
+			panel.setBorder(new TitledBorder(null, "Indentifíquese", TitledBorder.LEADING, TitledBorder.TOP, null, Color.blue));
 			contentPanel.add(panel);
 			panel.setLayout(new GridLayout(2, 2, 0, 0));
 			{
@@ -60,10 +48,10 @@ public class Login extends JDialog {
 					panel_1.add(lblNombre);
 				}
 				{
-					textField = new JTextField();
-					textField.setBounds(202, 45, 114, 19);
-					panel_1.add(textField);
-					textField.setColumns(10);
+					usernameField = new JTextField();
+					usernameField.setBounds(202, 45, 114, 19);
+					panel_1.add(usernameField);
+					usernameField.setColumns(10);
 				}
 			}
 			{
@@ -99,10 +87,10 @@ public class Login extends JDialog {
 					panel_1.add(lblNombreDeUsuario);
 				}
 				{
-					textField_1 = new JTextField();
-					textField_1.setBounds(214, 22, 114, 19);
-					panel_1.add(textField_1);
-					textField_1.setColumns(10);
+					dbusernameField = new JTextField();
+					dbusernameField.setBounds(214, 22, 114, 19);
+					panel_1.add(dbusernameField);
+					dbusernameField.setColumns(10);
 				}
 			}
 			{
@@ -116,10 +104,10 @@ public class Login extends JDialog {
 					panel_1_1.add(lblNewLabel);
 				}
 				{
-					textField_2 = new JPasswordField();
-					textField_2.setBounds(212, 10, 114, 19);
-					panel_1_1.add(textField_2);
-					textField_2.setColumns(10);
+					dbpasswordField = new JPasswordField();
+					dbpasswordField.setBounds(212, 10, 114, 19);
+					panel_1_1.add(dbpasswordField);
+					dbpasswordField.setColumns(10);
 				}
 			}
 			{
@@ -133,10 +121,10 @@ public class Login extends JDialog {
 					panel_1.add(lblNewLabel_1);
 				}
 				{
-					textField_3 = new JTextField();
-					textField_3.setBounds(213, 5, 114, 19);
-					panel_1.add(textField_3);
-					textField_3.setColumns(10);
+					dbhostField = new JTextField();
+					dbhostField.setBounds(213, 5, 114, 19);
+					panel_1.add(dbhostField);
+					dbhostField.setColumns(10);
 				}
 			}
 		}
@@ -146,16 +134,39 @@ public class Login extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Ingresar");
-				okButton.setActionCommand("OK");
+				okButton.setName("Login_OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				okButton.addActionListener(control);
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setActionCommand("Cancel");
+				cancelButton.setName("Login_Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(control);
 			}
 		}
+		setModalityType(ModalityType.APPLICATION_MODAL);
+	}
+	
+	public JTextField getUsernameField() {
+		return usernameField;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public JTextField getDbusernameField() {
+		return dbusernameField;
+	}
+
+	public JPasswordField getDbpasswordField() {
+		return dbpasswordField;
+	}
+
+	public JTextField getDbhostField() {
+		return dbhostField;
 	}
 
 }

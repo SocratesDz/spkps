@@ -21,9 +21,15 @@ public class SearchDialog extends JDialog {
 	private JTextField textField;
 	private JComboBox textField_1;
 	private JTextField textField_2;
-	private JPanel panel_4;
+	private JPanel panelCardLayout;
+	private CardLayout cl_panelCardLayout;
+	private JPanel panelBuscarNombre;
+	private JPanel panelBuscarEvento;
+	private JPanel panelBuscarBoletas;
+	private JPanel panelBuscarFecha;
 
 	public SearchDialog(JFrame parent, Controller control) {
+		cl_panelCardLayout = new CardLayout(0, 0);
 		setBounds(100, 100, 450, 300);
 		{
 			JPanel panel = new JPanel();
@@ -60,74 +66,74 @@ public class SearchDialog extends JDialog {
 					radioGroup.add(rdbtnFecha);
 					panel_1.add(rdbtnFecha);
 					rdbtnFecha.addChangeListener(control);
-					rdbtnFecha.setName("searchDialogViewEventPanel");
+					rdbtnFecha.setName("searchDialogViewDatePanel");
 				}
 			}
 			{
-				panel_4 = new JPanel();
-				panel.add(panel_4);
-				panel_4.setLayout(new CardLayout(0, 0));
+				panelCardLayout = new JPanel();
+				panel.add(panelCardLayout);
+				panelCardLayout.setLayout(cl_panelCardLayout);
 				{
-					JPanel panel_2 = new JPanel();
-					panel_2.setBorder(new TitledBorder(null, "Buscar por nombre", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-					panel_4.add(panel_2, "name_11005597118258");
+					panelBuscarNombre = new JPanel();
+					panelBuscarNombre.setBorder(new TitledBorder(null, "Buscar por nombre", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panelCardLayout.add(panelBuscarNombre, "SearchNamePanel");
 					{
 						JLabel lblNombre = new JLabel("Nombre:");
-						panel_2.add(lblNombre);
+						panelBuscarNombre.add(lblNombre);
 					}
 					{
 						textField = new JTextField();
-						panel_2.add(textField);
+						panelBuscarNombre.add(textField);
 						textField.setColumns(10);
 					}
 				}
 				{
-					JPanel panel_2 = new JPanel();
-					FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-					panel_2.setBorder(new TitledBorder(null, "Buscar por evento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-					panel_4.add(panel_2, "name_11043263450658");
+					panelBuscarEvento = new JPanel();
+					FlowLayout fl_panelBuscarEvento = (FlowLayout) panelBuscarEvento.getLayout();
+					panelBuscarEvento.setBorder(new TitledBorder(null, "Buscar por evento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panelCardLayout.add(panelBuscarEvento, "SearchEventPanel");
 					{
 						JLabel lblEvento = new JLabel("Evento");
-						panel_2.add(lblEvento);
+						panelBuscarEvento.add(lblEvento);
 					}
 					
 					textField_1 = new JComboBox();
-					panel_2.add(textField_1);
+					panelBuscarEvento.add(textField_1);
 				}
 				{
-					JPanel panel_3 = new JPanel();
-					panel_3.setBorder(new TitledBorder(null, "Buscar por cantidad de boletas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-					panel_4.add(panel_3, "name_11097345723820");
+					panelBuscarBoletas = new JPanel();
+					panelBuscarBoletas.setBorder(new TitledBorder(null, "Buscar por cantidad de boletas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panelCardLayout.add(panelBuscarBoletas, "SearchTicketsPanel");
 					
 					JLabel lblCantidadDeBoletas = new JLabel("Cantidad de boletas:");
-					panel_3.add(lblCantidadDeBoletas);
+					panelBuscarBoletas.add(lblCantidadDeBoletas);
 					
 					textField_2 = new JTextField();
-					panel_3.add(textField_2);
+					panelBuscarBoletas.add(textField_2);
 					textField_2.setColumns(10);
 				}
 				{
-					JPanel panel_2 = new JPanel();
-					panel_2.setBorder(new TitledBorder(null, "Buscar por fecha", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-					panel_4.add(panel_2, "name_11126997309903");
+					panelBuscarFecha = new JPanel();
+					panelBuscarFecha.setBorder(new TitledBorder(null, "Buscar por fecha", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panelCardLayout.add(panelBuscarFecha, "SearchDatePanel");
 					
 					JLabel lblFecha = new JLabel("Fecha (DD/MM/YYYY):");
-					panel_2.add(lblFecha);
+					panelBuscarFecha.add(lblFecha);
 					
 					JComboBox comboBox = new JComboBox();
-					panel_2.add(comboBox);
+					panelBuscarFecha.add(comboBox);
 					
 					JLabel label = new JLabel("/");
-					panel_2.add(label);
+					panelBuscarFecha.add(label);
 					
 					JComboBox comboBox_1 = new JComboBox();
-					panel_2.add(comboBox_1);
+					panelBuscarFecha.add(comboBox_1);
 					
 					JLabel label_1 = new JLabel("/");
-					panel_2.add(label_1);
+					panelBuscarFecha.add(label_1);
 					
 					JComboBox comboBox_2 = new JComboBox();
-					panel_2.add(comboBox_2);
+					panelBuscarFecha.add(comboBox_2);
 				}
 			}
 		}
@@ -146,11 +152,7 @@ public class SearchDialog extends JDialog {
 		btnCancelar.addActionListener(control);
 	}
 	
-	public void setPanel(int index) {
-<<<<<<< HEAD
-		// Cambiar a la siguiente tarjeta del CardLayout
-=======
-		//
->>>>>>> 9c8f592686400a2a8688e049e524f862fc1a6a21
+	public void setPanel(String name) {
+		cl_panelCardLayout.show(panelCardLayout, name);
 	}
 }

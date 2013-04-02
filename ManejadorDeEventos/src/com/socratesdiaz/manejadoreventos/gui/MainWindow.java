@@ -72,9 +72,24 @@ public class MainWindow extends JFrame {
 		JMenu mnEstadsticas = new JMenu("Estadísticas");
 		menuBar.add(mnEstadsticas);
 		
+		JMenuItem mntmCrearReportes = new JMenuItem("Crear reportes...");
+		mnEstadsticas.add(mntmCrearReportes);
+		mntmCrearReportes.setName("mainStats");
+		mntmCrearReportes.addActionListener(control);
+		
+		
+		JMenu mnAdministracin = new JMenu("Administración");
+		menuBar.add(mnAdministracin);
+		
+		JMenuItem mntmAadirEvento = new JMenuItem("Añadir evento...");
+		mnAdministracin.add(mntmAadirEvento);
+		
 		// Menú ayuda y sus ítems
 		JMenu mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
+		
+		JMenuItem mntmAcercaDe = new JMenuItem("Acerca de...");
+		mnAyuda.add(mntmAcercaDe);
 		
 		// Toolbar
 		JToolBar toolBar = new JToolBar();
@@ -165,17 +180,19 @@ public class MainWindow extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JLabel lblProgresoDelArchivo = new JLabel("Cargando base de datos...");
 		panel_1.add(lblProgresoDelArchivo);
 		
 		// Barra de progreso
 		JProgressBar progressBar = new JProgressBar();
+		progressBar.setIndeterminate(true);
 		panel_1.add(progressBar);
 		
-		
+		setTitle("Manejador de Eventos v1.0");
 		setVisible(true);
+		setDefaultLookAndFeelDecorated(true);
 	}
 	
 	public JTable getEventList() {
