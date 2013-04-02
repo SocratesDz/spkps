@@ -147,6 +147,10 @@ public class SearchDialog extends JDialog {
 	}
 	
 	public void setPanel(int index) {
+<<<<<<< HEAD
 		// Cambiar a la siguiente tarjeta del CardLayout
+=======
+		//
+>>>>>>> 9c8f592686400a2a8688e049e524f862fc1a6a21
 	}
 }
