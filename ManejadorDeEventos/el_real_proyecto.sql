@@ -12,13 +12,19 @@ USE `el_real_proyecto` ;
 
 -- -----------------------------------------------------
 
+DROP TABLE IF EXISTS `el_real_proyecto`.`Eventos`;
+
 CREATE TABLE IF NOT EXISTS `el_real_proyecto`.`Eventos` (
 
   `ID` INT NOT NULL AUTO_INCREMENT,
 
   `Nombre` VARCHAR(45) NOT NULL ,
 
-  `Descripcion` VARCHAR(45),
+  `Descripcion` VARCHAR(500),
+
+  `Fecha` DATE,
+
+  `Hora` TIME,
 
   `PrecioBoleta` INT,
 
@@ -33,6 +39,8 @@ CREATE TABLE IF NOT EXISTS `el_real_proyecto`.`Eventos` (
 -- Table `el_real_proyecto`.`Cliente`
 
 -- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `el_real_proyecto`.`Cliente`;
 
 CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Cliente` (
 
@@ -58,6 +66,8 @@ CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Cliente` (
 -- Table `el_real_proyecto`.`Reservacion`
 
 -- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `el_real_proyecto`.`Reservacion`;
 
 CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Reservacion` (
 
