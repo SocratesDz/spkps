@@ -1,10 +1,10 @@
- 
- 
-CREATE DATABASE IF NOT EXISTS el_real_proyecto;  -- ya tu saves como va blablabla
+CREATE DATABASE IF NOT EXISTS el_real_proyecto;
 
 USE `el_real_proyecto` ;
 
-
+DROP TABLE IF EXISTS `el_real_proyecto`.`Reservacion`;
+DROP TABLE IF EXISTS `el_real_proyecto`.`Eventos`;
+DROP TABLE IF EXISTS `el_real_proyecto`.`Cliente`;
 
 -- -----------------------------------------------------
 
@@ -12,26 +12,21 @@ USE `el_real_proyecto` ;
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `el_real_proyecto`.`Eventos`;
-
 CREATE TABLE IF NOT EXISTS `el_real_proyecto`.`Eventos` (
 
-  `ID` INT NOT NULL AUTO_INCREMENT,
+  `IDEvento` INT NOT NULL AUTO_INCREMENT,
 
-  `Nombre` VARCHAR(45) NOT NULL ,
+  `NombreEvento` VARCHAR(45) NOT NULL ,
 
-  `Descripcion` VARCHAR(500),
+  `DescripcionEvento` TEXT,
 
-  `Fecha` DATE,
+  `FechaEvento` DATE,
 
-  `Hora` TIME,
+  `HoraEvento` TIME,
 
   `PrecioBoleta` INT,
 
-  PRIMARY KEY (`ID`) );
-
-
-
+  PRIMARY KEY (`IDEvento`) );
 
 
 -- -----------------------------------------------------
@@ -40,26 +35,19 @@ CREATE TABLE IF NOT EXISTS `el_real_proyecto`.`Eventos` (
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `el_real_proyecto`.`Cliente`;
-
 CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Cliente` (
 
-  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `IDCliente` INT NOT NULL AUTO_INCREMENT ,
 
-  `Nombre` VARCHAR(45) NOT NULL ,
+  `NombreCliente` VARCHAR(45) NOT NULL ,
 
-  `Apellido` VARCHAR(45) NOT NULL ,
+  `ApellidoCliente` VARCHAR(45) NOT NULL ,
 
-  `Sexo` VARCHAR(1) NOT NULL ,
+  `SexoCliente` VARCHAR(1) NOT NULL ,
 
-  `Edad` INT NOT NULL ,
+  `EdadCliente` INT NOT NULL ,
 
-  PRIMARY KEY (`ID`) );
-
-
-
-
-
+  PRIMARY KEY (`IDCliente`) );
 
 -- -----------------------------------------------------
 
@@ -67,11 +55,9 @@ CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Cliente` (
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `el_real_proyecto`.`Reservacion`;
-
 CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Reservacion` (
 
-  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `IDReservacion` INT NOT NULL AUTO_INCREMENT ,
 
   `ClienteID` INT NOT NULL,
 
@@ -79,6 +65,11 @@ CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Reservacion` (
 
   `CantidadBoletas` INT,
 
-  `Precio` INT, 
+  `PrecioTotal` INT, 
 
-  PRIMARY KEY (`ID`, `ClienteID`, `EventoID`) );
+  PRIMARY KEY (`IDReservacion`),
+
+  FOREIGN KEY (`ClienteID`) REFERENCES `el_real_proyecto`.`Cliente` (`IDCliente`),
+
+  FOREIGN KEY (`EventoID`) REFERENCES `el_real_proyecto`.`Eventos` (`IDEvento`));
+  
