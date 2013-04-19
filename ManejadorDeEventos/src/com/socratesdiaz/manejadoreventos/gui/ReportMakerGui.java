@@ -3,6 +3,7 @@ package com.socratesdiaz.manejadoreventos.gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,7 +18,15 @@ import javax.swing.JList;
 import java.awt.Component;
 import javax.swing.Box;
 
+import com.socratesdiaz.manejadoreventos.core.DataQueryListModel;
+import com.socratesdiaz.manejadoreventos.core.DataQueryTableModel;
+
+import javax.swing.JTable;
+
 public class ReportMakerGui extends JDialog {
+
+	private JList dataQueryList;
+	private JTable dataQueryTable;
 
 	public ReportMakerGui(JFrame mainWindow, Controller control) {
 		super(mainWindow);
@@ -62,9 +71,13 @@ public class ReportMakerGui extends JDialog {
 				gbc_scrollPane.gridy = 4;
 				panel.add(scrollPane, gbc_scrollPane);
 				{
-					JList list = new JList();
-					scrollPane.setViewportView(list);
+					dataQueryTable = new JTable(new DataQueryTableModel());
+					scrollPane.setViewportView(dataQueryTable);
 				}
+				/*{
+					dataQueryList = new JList(new DataQueryListModel());
+					scrollPane.setViewportView(dataQueryList);
+				}*/
 			}
 			{
 				JButton btnAadir = new JButton("Añadir...");
@@ -107,6 +120,15 @@ public class ReportMakerGui extends JDialog {
 				btnCancelar.addActionListener(control);
 			}
 		}
+	}
+	
+	public JList getDataQueryList() {
+		return dataQueryList;
+	}
+
+	public JTable getDataQueryTable() {
+		// TODO Auto-generated method stub
+		return dataQueryTable;
 	}
 
 }

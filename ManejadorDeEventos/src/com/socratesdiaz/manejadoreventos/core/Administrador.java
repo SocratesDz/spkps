@@ -6,5 +6,6 @@ public class Administrador extends Usuario {
 		this.nombre = nombre;
 		this.password = password;
 		this.tipo = "Administrador";
+		this.setCreationDate();
 	}
 }

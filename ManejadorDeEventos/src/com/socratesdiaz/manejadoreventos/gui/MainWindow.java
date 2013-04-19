@@ -16,6 +16,7 @@ import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JMenu;
@@ -24,9 +25,14 @@ import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JMenuItem;
 
+import com.socratesdiaz.manejadoreventos.core.Usuario;
+
 public class MainWindow extends JFrame {
 
 	private JTable table;
+	private JMenu mnAdministracin;
+	private JMenuItem mntmAdministrarEventos;
+	private JMenuItem mntmAdministrarUsuarios;
 
 	public MainWindow(Controller control) {
 		super();
@@ -77,12 +83,24 @@ public class MainWindow extends JFrame {
 		mntmCrearReportes.setName("mainStats");
 		mntmCrearReportes.addActionListener(control);
 		
-		
-		JMenu mnAdministracin = new JMenu("Administración");
+		// Menú administración y sus ítems
+		mnAdministracin = new JMenu("Administración");
 		menuBar.add(mnAdministracin);
 		
-		JMenuItem mntmAadirEvento = new JMenuItem("Añadir evento...");
-		mnAdministracin.add(mntmAadirEvento);
+		JMenuItem mntmChangeUser = new JMenuItem("Cambiar de usuario...");
+		mnAdministracin.add(mntmChangeUser);
+		mntmChangeUser.setName("mainChangeUser");
+		mntmChangeUser.addActionListener(control);
+		
+		mntmAdministrarEventos = new JMenuItem("Administrar eventos...");
+		mnAdministracin.add(mntmAdministrarEventos);
+		mntmAdministrarEventos.setName("mainAdminEvents");
+		mntmAdministrarEventos.addActionListener(control);
+		
+		mntmAdministrarUsuarios = new JMenuItem("Administrar usuarios...");
+		mnAdministracin.add(mntmAdministrarUsuarios);
+		mntmAdministrarUsuarios.setName("mainAdminUsers");
+		mntmAdministrarUsuarios.addActionListener(control);
 		
 		// Menú ayuda y sus ítems
 		JMenu mnAyuda = new JMenu("Ayuda");
@@ -95,37 +113,44 @@ public class MainWindow extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
-		JButton btnAgregar = new JButton("Agregar");
+		ImageIcon imagenAgregar = new ImageIcon("iconos/add.png");
+		JButton btnAgregar = new JButton("Agregar",imagenAgregar);
 		toolBar.add(btnAgregar);
 		btnAgregar.setName("mainAdd");
 		btnAgregar.addActionListener(control);
 		
-		JButton btnBorrar = new JButton("Borrar");
+		ImageIcon imagenBorrar = new ImageIcon("iconos/cross.png");
+		JButton btnBorrar = new JButton("Borrar",imagenBorrar);
 		toolBar.add(btnBorrar);
 		btnBorrar.addActionListener(control);
 		btnBorrar.setName("mainDelete");
 		
-		JButton btnActualizar = new JButton("Actualizar");
+		ImageIcon imagenActualizar = new ImageIcon("iconos/arrow_refresh.png");
+		JButton btnActualizar = new JButton("Actualizar",imagenActualizar);
 		toolBar.add(btnActualizar);
 		btnActualizar.addActionListener(control);
 		btnActualizar.setName("mainRefresh");
 		
-		JButton btnEstadsticas = new JButton("Estadísticas");
+		ImageIcon imgenEstadisticas = new ImageIcon("iconos/table.png");
+		JButton btnEstadsticas = new JButton("Estadistica",imgenEstadisticas);
 		toolBar.add(btnEstadsticas);
 		btnEstadsticas.setName("mainStats");
 		btnEstadsticas.addActionListener(control);
 		
-		JButton btnImprimir = new JButton("Imprimir");
+		ImageIcon imagenImprimir = new ImageIcon("iconos/printer.png");
+		JButton btnImprimir = new JButton( "Imprimir",imagenImprimir);
 		toolBar.add(btnImprimir);
 		btnImprimir.addActionListener(control);
 		btnImprimir.setName("mainPrint");
 		
-		JButton btnBuscar = new JButton("Buscar");
+		ImageIcon imagenBuscar  = new ImageIcon("iconos/magnifier.png");
+		JButton btnBuscar = new JButton("Buscar",imagenBuscar);
 		toolBar.add(btnBuscar);
 		btnBuscar.setName("mainSearch");
 		btnBuscar.addActionListener(control);
 		
-		JButton btnAyuda = new JButton("Ayuda");
+		ImageIcon imagenAyuda = new ImageIcon("iconos/wrench.png");
+		JButton btnAyuda = new JButton("Ayuda",imagenAyuda);
 		toolBar.add(btnAyuda);
 		btnAyuda.setName("mainHelp");
 		btnAyuda.addActionListener(control);
@@ -183,19 +208,32 @@ public class MainWindow extends JFrame {
 		panel_1.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JLabel lblProgresoDelArchivo = new JLabel("Cargando base de datos...");
-		panel_1.add(lblProgresoDelArchivo);
+		//panel_1.add(lblProgresoDelArchivo);
 		
 		// Barra de progreso
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setIndeterminate(true);
-		panel_1.add(progressBar);
+		//panel_1.add(progressBar);
 		
 		setTitle("Manejador de Eventos v1.0");
 		setVisible(true);
+		setResizable(false);
 		setDefaultLookAndFeelDecorated(true);
 	}
 	
 	public JTable getEventList() {
 		return table;
 	}
+	
+	public void setUser(Usuario user) {
+		if(user.getTipo().equals("Administrador")) {
+			mntmAdministrarEventos.setEnabled(true);
+			mntmAdministrarUsuarios.setEnabled(true);
+		}
+		else {
+			mntmAdministrarEventos.setEnabled(false);
+			mntmAdministrarUsuarios.setEnabled(false);
+		}
+	}
+	
 }

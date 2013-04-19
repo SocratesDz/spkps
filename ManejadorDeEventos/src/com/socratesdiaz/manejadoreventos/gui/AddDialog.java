@@ -16,13 +16,17 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.TitledBorder;
 import java.awt.Dialog.ModalityType;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class AddDialog extends JDialog {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JComboBox textField_2;
-	private JTextField textField_3;
-	private JComboBox textField_4;
+	private JTextField textFieldName;
+	private JTextField textFieldEdad;
+	private JTextField textFieldTickets;
+	private JComboBox comboBoxEvents;
+	private JTextField textFieldLastName;
+	private JLabel lblBoletas;
+	private JLabel labelPrice;
 
 	public AddDialog(JFrame parent, Controller control) {
 		super(parent);
@@ -30,16 +34,16 @@ public class AddDialog extends JDialog {
 		setResizable(false);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 318);
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Introduzca la informaci\u00F3n del nuevo invitado", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Introduzca la informaci\u00F3n del nuevo cliente", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 			getContentPane().add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{59, 88, 33, 122, 146, 0};
-			gbl_panel.rowHeights = new int[]{33, 27, 27, 27, 27, 25, 15, 0};
-			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.columnWidths = new int[]{10, 88, 122, 107, 146, 0};
+			gbl_panel.rowHeights = new int[]{33, 27, 0, 0, 27, 27, 27, 15, 0};
+			gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			
 			JLabel lblNombre = new JLabel("Nombre:");
@@ -50,92 +54,111 @@ public class AddDialog extends JDialog {
 			gbc_lblNombre.gridy = 1;
 			panel.add(lblNombre, gbc_lblNombre);
 			
-			textField = new JTextField();
+			textFieldName = new JTextField();
 			GridBagConstraints gbc_textField = new GridBagConstraints();
+			gbc_textField.gridwidth = 2;
 			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textField.anchor = GridBagConstraints.NORTH;
 			gbc_textField.insets = new Insets(0, 0, 5, 5);
-			gbc_textField.gridx = 3;
+			gbc_textField.gridx = 2;
 			gbc_textField.gridy = 1;
-			panel.add(textField, gbc_textField);
-			textField.setColumns(10);
+			panel.add(textFieldName, gbc_textField);
+			textFieldName.setColumns(10);
+			
+			JLabel lblApellido = new JLabel("Apellido:");
+			GridBagConstraints gbc_lblApellido = new GridBagConstraints();
+			gbc_lblApellido.anchor = GridBagConstraints.WEST;
+			gbc_lblApellido.insets = new Insets(0, 0, 5, 5);
+			gbc_lblApellido.gridx = 1;
+			gbc_lblApellido.gridy = 2;
+			panel.add(lblApellido, gbc_lblApellido);
+			
+			textFieldLastName = new JTextField();
+			GridBagConstraints gbc_textFieldLastName = new GridBagConstraints();
+			gbc_textFieldLastName.gridwidth = 2;
+			gbc_textFieldLastName.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textFieldLastName.insets = new Insets(0, 0, 5, 5);
+			gbc_textFieldLastName.gridx = 2;
+			gbc_textFieldLastName.gridy = 2;
+			panel.add(textFieldLastName, gbc_textFieldLastName);
+			textFieldLastName.setColumns(10);
+			
+			JLabel lblSexo = new JLabel("Sexo:");
+			GridBagConstraints gbc_lblSexo = new GridBagConstraints();
+			gbc_lblSexo.anchor = GridBagConstraints.WEST;
+			gbc_lblSexo.insets = new Insets(0, 0, 5, 5);
+			gbc_lblSexo.gridx = 1;
+			gbc_lblSexo.gridy = 3;
+			panel.add(lblSexo, gbc_lblSexo);
+			
+			JComboBox sexComboBox = new JComboBox();
+			GridBagConstraints gbc_sexComboBox = new GridBagConstraints();
+			gbc_sexComboBox.insets = new Insets(0, 0, 5, 5);
+			gbc_sexComboBox.fill = GridBagConstraints.HORIZONTAL;
+			gbc_sexComboBox.gridx = 2;
+			gbc_sexComboBox.gridy = 3;
+			panel.add(sexComboBox, gbc_sexComboBox);
 			
 			JLabel lblEdad = new JLabel("Edad:");
 			GridBagConstraints gbc_lblEdad = new GridBagConstraints();
 			gbc_lblEdad.fill = GridBagConstraints.HORIZONTAL;
 			gbc_lblEdad.insets = new Insets(0, 0, 5, 5);
 			gbc_lblEdad.gridx = 1;
-			gbc_lblEdad.gridy = 2;
+			gbc_lblEdad.gridy = 4;
 			panel.add(lblEdad, gbc_lblEdad);
 			
-			textField_1 = new JTextField();
+			textFieldEdad = new JTextField();
 			GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 			gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textField_1.anchor = GridBagConstraints.NORTH;
 			gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-			gbc_textField_1.gridx = 3;
-			gbc_textField_1.gridy = 2;
-			panel.add(textField_1, gbc_textField_1);
-			textField_1.setColumns(10);
+			gbc_textField_1.gridx = 2;
+			gbc_textField_1.gridy = 4;
+			panel.add(textFieldEdad, gbc_textField_1);
+			textFieldEdad.setColumns(10);
 			
 			JLabel lblCantBoletas = new JLabel("Cant. boletas:");
 			GridBagConstraints gbc_lblCantBoletas = new GridBagConstraints();
 			gbc_lblCantBoletas.anchor = GridBagConstraints.WEST;
 			gbc_lblCantBoletas.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCantBoletas.gridx = 1;
-			gbc_lblCantBoletas.gridy = 3;
+			gbc_lblCantBoletas.gridy = 5;
 			panel.add(lblCantBoletas, gbc_lblCantBoletas);
 			
-			textField_3 = new JTextField();
-			GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-			gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_3.anchor = GridBagConstraints.NORTH;
-			gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-			gbc_textField_3.gridx = 3;
-			gbc_textField_3.gridy = 3;
-			panel.add(textField_3, gbc_textField_3);
-			textField_3.setColumns(10);
-			
-			JLabel lblTipoDePago = new JLabel("Tipo de pago:");
-			GridBagConstraints gbc_lblTipoDePago = new GridBagConstraints();
-			gbc_lblTipoDePago.fill = GridBagConstraints.HORIZONTAL;
-			gbc_lblTipoDePago.insets = new Insets(0, 0, 5, 5);
-			gbc_lblTipoDePago.gridx = 1;
-			gbc_lblTipoDePago.gridy = 4;
-			panel.add(lblTipoDePago, gbc_lblTipoDePago);
-			
-			textField_2 = new JComboBox();
-			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-			gbc_textField_2.anchor = GridBagConstraints.NORTH;
-			gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-			gbc_textField_2.gridx = 3;
-			gbc_textField_2.gridy = 4;
-			panel.add(textField_2, gbc_textField_2);
+			textFieldTickets = new JTextField();
+			GridBagConstraints gbc_textFieldTickets = new GridBagConstraints();
+			gbc_textFieldTickets.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textFieldTickets.anchor = GridBagConstraints.NORTH;
+			gbc_textFieldTickets.insets = new Insets(0, 0, 5, 5);
+			gbc_textFieldTickets.gridx = 2;
+			gbc_textFieldTickets.gridy = 5;
+			panel.add(textFieldTickets, gbc_textFieldTickets);
+			textFieldTickets.setColumns(10);
 			
 			JLabel lblEvento = new JLabel("Evento:");
 			GridBagConstraints gbc_lblEvento = new GridBagConstraints();
 			gbc_lblEvento.fill = GridBagConstraints.HORIZONTAL;
 			gbc_lblEvento.insets = new Insets(0, 0, 5, 5);
 			gbc_lblEvento.gridx = 1;
-			gbc_lblEvento.gridy = 5;
+			gbc_lblEvento.gridy = 6;
 			panel.add(lblEvento, gbc_lblEvento);
 			
-			textField_4 = new JComboBox();
-			GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-			gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_4.anchor = GridBagConstraints.NORTH;
-			gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-			gbc_textField_4.gridx = 3;
-			gbc_textField_4.gridy = 5;
-			panel.add(textField_4, gbc_textField_4);
+			comboBoxEvents = new JComboBox();
+			GridBagConstraints gbc_comboBoxEvents = new GridBagConstraints();
+			gbc_comboBoxEvents.gridwidth = 2;
+			gbc_comboBoxEvents.fill = GridBagConstraints.HORIZONTAL;
+			gbc_comboBoxEvents.anchor = GridBagConstraints.NORTH;
+			gbc_comboBoxEvents.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBoxEvents.gridx = 2;
+			gbc_comboBoxEvents.gridy = 6;
+			panel.add(comboBoxEvents, gbc_comboBoxEvents);
 			
-			JLabel lblBoletas = new JLabel("Boletas: ");
+			lblBoletas = new JLabel("Boletas: ");
 			GridBagConstraints gbc_lblBoletas = new GridBagConstraints();
-			gbc_lblBoletas.fill = GridBagConstraints.HORIZONTAL;
+			gbc_lblBoletas.anchor = GridBagConstraints.WEST;
 			gbc_lblBoletas.insets = new Insets(0, 0, 5, 0);
 			gbc_lblBoletas.gridx = 4;
-			gbc_lblBoletas.gridy = 5;
+			gbc_lblBoletas.gridy = 6;
 			panel.add(lblBoletas, gbc_lblBoletas);
 			
 			JLabel lblPrecio = new JLabel("Precio:");
@@ -144,17 +167,17 @@ public class AddDialog extends JDialog {
 			gbc_lblPrecio.fill = GridBagConstraints.HORIZONTAL;
 			gbc_lblPrecio.insets = new Insets(0, 0, 0, 5);
 			gbc_lblPrecio.gridx = 1;
-			gbc_lblPrecio.gridy = 6;
+			gbc_lblPrecio.gridy = 7;
 			panel.add(lblPrecio, gbc_lblPrecio);
 			
-			JLabel label = new JLabel("$ ...");
-			GridBagConstraints gbc_label = new GridBagConstraints();
-			gbc_label.anchor = GridBagConstraints.NORTH;
-			gbc_label.fill = GridBagConstraints.HORIZONTAL;
-			gbc_label.insets = new Insets(0, 0, 0, 5);
-			gbc_label.gridx = 3;
-			gbc_label.gridy = 6;
-			panel.add(label, gbc_label);
+			labelPrice = new JLabel("$ ...");
+			GridBagConstraints gbc_labelPrice = new GridBagConstraints();
+			gbc_labelPrice.anchor = GridBagConstraints.NORTH;
+			gbc_labelPrice.fill = GridBagConstraints.HORIZONTAL;
+			gbc_labelPrice.insets = new Insets(0, 0, 0, 5);
+			gbc_labelPrice.gridx = 2;
+			gbc_labelPrice.gridy = 7;
+			panel.add(labelPrice, gbc_labelPrice);
 		}
 		
 		JPanel panel = new JPanel();
@@ -169,5 +192,33 @@ public class AddDialog extends JDialog {
 		panel.add(btnCancelar);
 		btnCancelar.setName("addDialogCancel");
 		btnCancelar.addActionListener(control);
+	}
+
+	public JTextField getTextFieldName() {
+		return textFieldName;
+	}
+
+	public JTextField getTextFieldEdad() {
+		return textFieldEdad;
+	}
+
+	public JTextField getTextFieldTickets() {
+		return textFieldTickets;
+	}
+
+	public JComboBox getComboBoxEvents() {
+		return comboBoxEvents;
+	}
+
+	public JLabel getLblBoletas() {
+		return lblBoletas;
+	}
+
+	public JLabel getLabelPrice() {
+		return labelPrice;
+	}
+
+	public JTextField getTextFieldLastName() {
+		return textFieldLastName;
 	}
 }

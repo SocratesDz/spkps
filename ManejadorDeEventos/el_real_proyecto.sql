@@ -2,9 +2,9 @@ CREATE DATABASE IF NOT EXISTS el_real_proyecto;
 
 USE `el_real_proyecto` ;
 
-DROP TABLE IF EXISTS `el_real_proyecto`.`Reservacion`;
 DROP TABLE IF EXISTS `el_real_proyecto`.`Eventos`;
 DROP TABLE IF EXISTS `el_real_proyecto`.`Cliente`;
+DROP TABLE IF EXISTS `el_real_proyecto`.`Reservacion`;
 
 -- -----------------------------------------------------
 
@@ -14,19 +14,19 @@ DROP TABLE IF EXISTS `el_real_proyecto`.`Cliente`;
 
 CREATE TABLE IF NOT EXISTS `el_real_proyecto`.`Eventos` (
 
-  `IDEvento` INT NOT NULL AUTO_INCREMENT,
+  `ID` INT NOT NULL AUTO_INCREMENT,
 
-  `NombreEvento` VARCHAR(45) NOT NULL ,
+  `Nombre` VARCHAR(45) NOT NULL ,
 
-  `DescripcionEvento` TEXT,
+  `Descripcion` TEXT,
 
-  `FechaEvento` DATE,
+  `Fecha` DATE,
 
-  `HoraEvento` TIME,
+  `Hora` TIME,
 
   `PrecioBoleta` INT,
 
-  PRIMARY KEY (`IDEvento`) );
+  PRIMARY KEY (`ID`) );
 
 
 -- -----------------------------------------------------
@@ -37,17 +37,17 @@ CREATE TABLE IF NOT EXISTS `el_real_proyecto`.`Eventos` (
 
 CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Cliente` (
 
-  `IDCliente` INT NOT NULL AUTO_INCREMENT ,
+  `ID` INT NOT NULL AUTO_INCREMENT ,
 
-  `NombreCliente` VARCHAR(45) NOT NULL ,
+  `Nombre` VARCHAR(45) NOT NULL ,
 
-  `ApellidoCliente` VARCHAR(45) NOT NULL ,
+  `Apellido` VARCHAR(45) NOT NULL ,
 
-  `SexoCliente` VARCHAR(1) NOT NULL ,
+  `Sexo` VARCHAR(1) NOT NULL ,
 
-  `EdadCliente` INT NOT NULL ,
+  `Edad` INT NOT NULL ,
 
-  PRIMARY KEY (`IDCliente`) );
+  PRIMARY KEY (`ID`) );
 
 -- -----------------------------------------------------
 
@@ -57,7 +57,7 @@ CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Cliente` (
 
 CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Reservacion` (
 
-  `IDReservacion` INT NOT NULL AUTO_INCREMENT ,
+  `ID` INT NOT NULL AUTO_INCREMENT ,
 
   `ClienteID` INT NOT NULL,
 
@@ -65,11 +65,11 @@ CREATE  TABLE IF NOT EXISTS `el_real_proyecto`.`Reservacion` (
 
   `CantidadBoletas` INT,
 
-  `PrecioTotal` INT, 
+  `Precio` INT, 
 
-  PRIMARY KEY (`IDReservacion`),
+  PRIMARY KEY (`ID`),
 
-  FOREIGN KEY (`ClienteID`) REFERENCES `el_real_proyecto`.`Cliente` (`IDCliente`),
+  FOREIGN KEY (`ClienteID`) REFERENCES `el_real_proyecto`.`Cliente` (`ID`),
 
-  FOREIGN KEY (`EventoID`) REFERENCES `el_real_proyecto`.`Eventos` (`IDEvento`));
+  FOREIGN KEY (`EventoID`) REFERENCES `el_real_proyecto`.`Eventos` (`ID`));
   

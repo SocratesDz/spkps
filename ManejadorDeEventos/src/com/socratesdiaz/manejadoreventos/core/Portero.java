@@ -6,5 +6,6 @@ public class Portero extends Usuario {
 		this.nombre = nombre;
 		this.password = password;
 		this.tipo = "Portero";
+		this.setCreationDate();
 	}
 }
