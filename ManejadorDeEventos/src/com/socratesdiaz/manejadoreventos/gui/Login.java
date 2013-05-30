@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
 
+import com.socratesdiaz.manejadoreventos.control.MainController;
+
 public class Login extends JDialog {
 
 	private final JPanel contentPanel;
@@ -24,7 +26,7 @@ public class Login extends JDialog {
 	private JPasswordField dbpasswordField;
 	private JTextField dbhostField;
 
-	public Login(JFrame parent, Controller control) {
+	public Login(JFrame parent, MainController control) {
 		super(parent);
 		setTitle("Login");
 		setBounds(100, 100, 450, 427);

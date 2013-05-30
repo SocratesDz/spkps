@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import com.socratesdiaz.manejadoreventos.control.MainController;
+
 public class SearchDialog extends JDialog {
 	private JTextField textField;
 	private JComboBox textField_1;
@@ -28,7 +30,7 @@ public class SearchDialog extends JDialog {
 	private JPanel panelBuscarBoletas;
 	private JPanel panelBuscarFecha;
 
-	public SearchDialog(JFrame parent, Controller control) {
+	public SearchDialog(JFrame parent, MainController control) {
 		cl_panelCardLayout = new CardLayout(0, 0);
 		setBounds(100, 100, 450, 300);
 		{

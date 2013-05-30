@@ -1,4 +1,4 @@
-package com.socratesdiaz.manejadoreventos.core;
+package com.socratesdiaz.manejadoreventos.database;
 
 import java.sql.*;
 
@@ -7,6 +7,7 @@ public class DBManager {
 	private Connection con;
 	private ResultSet result;
 	private Statement statement;
+	private PreparedStatement preparedStmt;
 	
 	private boolean successConnection = false;
 	private String error;
@@ -18,7 +19,7 @@ public class DBManager {
 	public int connect(String username, String password, String host) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://"+host+"/llamadas", username, password);
+			con = DriverManager.getConnection("jdbc:mysql://"+host, username, password);
 			statement = con.createStatement();
 			successConnection = true;
 			error = "";
@@ -51,11 +52,16 @@ public class DBManager {
 	
 	public void executeQuery(String query) {
 		try {
+			statement = con.createStatement();
 			result = statement.executeQuery(query);
 		}
 		catch (SQLException e) {
 			error += e.getLocalizedMessage();
 		}
+	}
+	
+	public Connection getConnection() {
+		return con;
 	}
 	
 	public int disconnect() {

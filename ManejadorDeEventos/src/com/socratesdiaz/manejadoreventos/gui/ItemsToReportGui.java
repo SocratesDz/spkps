@@ -13,7 +13,8 @@ import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import javax.swing.Box;
 
-import com.socratesdiaz.manejadoreventos.core.ComponentDataFiller;
+import com.socratesdiaz.manejadoreventos.control.ComponentDataFiller;
+import com.socratesdiaz.manejadoreventos.control.MainController;
 import com.socratesdiaz.manejadoreventos.core.QueryCodes;
 
 import java.awt.Component;
@@ -23,7 +24,7 @@ public class ItemsToReportGui extends JDialog {
 	private JComboBox comboBoxDataItem;
 	private JComboBox comboBoxEventList;
 
-	public ItemsToReportGui(ReportMakerGui parent, Controller control) {
+	public ItemsToReportGui(ReportMakerGui parent, MainController control) {
 		super(parent);
 		setResizable(false);
 		setModalityType(ModalityType.APPLICATION_MODAL);

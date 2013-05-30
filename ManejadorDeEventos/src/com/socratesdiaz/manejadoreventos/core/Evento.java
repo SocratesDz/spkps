@@ -60,4 +60,8 @@ public class Evento {
 		return new SimpleDateFormat("hh:mm:ss").format(date);
 	}
 	
+	public String toString() {
+		return descripcion;
+	}
+	
 }

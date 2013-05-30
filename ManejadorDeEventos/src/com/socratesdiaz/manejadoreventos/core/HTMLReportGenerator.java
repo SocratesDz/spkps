@@ -11,6 +11,9 @@ import java.util.Vector;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 
+import com.socratesdiaz.manejadoreventos.control.MiniHTMLParser;
+import com.socratesdiaz.manejadoreventos.database.DBManager;
+
 public class HTMLReportGenerator {
 
 	public DBManager dbManager;
@@ -54,6 +57,9 @@ public class HTMLReportGenerator {
 		}
 		finalHtml += "<p><i>Momento de creación del documento: "+new SimpleDateFormat().format(new Date())+"</i></p>"+
 					"</body></html>";
+		
+		finalHtml = MiniHTMLParser.toHTML(finalHtml);
+		
 		if(!output.exists()) output.createNewFile();
 		if(output.canWrite()) {
 			Formatter formatter = new Formatter(output);

@@ -17,6 +17,9 @@ import java.awt.Insets;
 import javax.swing.border.TitledBorder;
 import java.awt.Dialog.ModalityType;
 import javax.swing.border.LineBorder;
+
+import com.socratesdiaz.manejadoreventos.control.MainController;
+
 import java.awt.Color;
 
 public class AddDialog extends JDialog {
@@ -27,8 +30,9 @@ public class AddDialog extends JDialog {
 	private JTextField textFieldLastName;
 	private JLabel lblBoletas;
 	private JLabel labelPrice;
+	private JComboBox sexComboBox;
 
-	public AddDialog(JFrame parent, Controller control) {
+	public AddDialog(JFrame parent, MainController control) {
 		super(parent);
 		setTitle("Agregar");
 		setResizable(false);
@@ -91,13 +95,15 @@ public class AddDialog extends JDialog {
 			gbc_lblSexo.gridy = 3;
 			panel.add(lblSexo, gbc_lblSexo);
 			
-			JComboBox sexComboBox = new JComboBox();
+			sexComboBox = new JComboBox();
 			GridBagConstraints gbc_sexComboBox = new GridBagConstraints();
 			gbc_sexComboBox.insets = new Insets(0, 0, 5, 5);
 			gbc_sexComboBox.fill = GridBagConstraints.HORIZONTAL;
 			gbc_sexComboBox.gridx = 2;
 			gbc_sexComboBox.gridy = 3;
 			panel.add(sexComboBox, gbc_sexComboBox);
+			sexComboBox.addItem("M");
+			sexComboBox.addItem("F");
 			
 			JLabel lblEdad = new JLabel("Edad:");
 			GridBagConstraints gbc_lblEdad = new GridBagConstraints();
@@ -159,7 +165,7 @@ public class AddDialog extends JDialog {
 			gbc_lblBoletas.insets = new Insets(0, 0, 5, 0);
 			gbc_lblBoletas.gridx = 4;
 			gbc_lblBoletas.gridy = 6;
-			panel.add(lblBoletas, gbc_lblBoletas);
+			//panel.add(lblBoletas, gbc_lblBoletas);
 			
 			JLabel lblPrecio = new JLabel("Precio:");
 			GridBagConstraints gbc_lblPrecio = new GridBagConstraints();
@@ -220,5 +226,13 @@ public class AddDialog extends JDialog {
 
 	public JTextField getTextFieldLastName() {
 		return textFieldLastName;
+	}
+	
+	public String getSexValue() {
+		return (String)sexComboBox.getSelectedItem();
+	}
+	
+	public String getEventComboBoxValue() {
+		return (String)comboBoxEvents.getSelectedItem();
 	}
 }

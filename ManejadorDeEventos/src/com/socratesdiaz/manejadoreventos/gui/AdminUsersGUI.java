@@ -21,6 +21,8 @@ import java.awt.Frame;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 
+import com.socratesdiaz.manejadoreventos.control.MainController;
+
 public class AdminUsersGUI extends JDialog {
 	private JTextField nameTextField;
 	private JPasswordField passwordTextField;
@@ -28,7 +30,7 @@ public class AdminUsersGUI extends JDialog {
 	private JPasswordField passwordTextField2;
 	private JList userList;
 
-	public AdminUsersGUI(Frame parent, Controller control) {
+	public AdminUsersGUI(Frame parent, MainController control) {
 		super(parent);
 		setBounds(100, 100, 518, 300);
 		getContentPane().setLayout(null);

@@ -18,8 +18,9 @@ import javax.swing.JList;
 import java.awt.Component;
 import javax.swing.Box;
 
-import com.socratesdiaz.manejadoreventos.core.DataQueryListModel;
-import com.socratesdiaz.manejadoreventos.core.DataQueryTableModel;
+import com.socratesdiaz.manejadoreventos.control.MainController;
+import com.socratesdiaz.manejadoreventos.control.DataQueryListModel;
+import com.socratesdiaz.manejadoreventos.control.DataQueryTableModel;
 
 import javax.swing.JTable;
 
@@ -28,7 +29,7 @@ public class ReportMakerGui extends JDialog {
 	private JList dataQueryList;
 	private JTable dataQueryTable;
 
-	public ReportMakerGui(JFrame mainWindow, Controller control) {
+	public ReportMakerGui(JFrame mainWindow, MainController control) {
 		super(mainWindow);
 		setResizable(false);
 		setTitle("Estadísticas");
